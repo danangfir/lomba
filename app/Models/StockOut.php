@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class StockOut extends Model
 {
-    protected $table = 'stock_out';
+    protected $table = 'stockout';
 
     protected $fillable = [
         'name',
