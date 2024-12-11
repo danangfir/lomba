@@ -6,12 +6,16 @@ use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Product;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Auth;
 
 class ProductResource extends Resource
 {
@@ -23,7 +27,27 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Select::make('category_id')
+                    ->relationship('category', 'name')
+                    ->required(),
+                TextInput::make('name')
+                    ->required()
+                    ->maxLength(100),
+                TextInput::make('stock')
+                    ->required()
+                    ->numeric()
+                    ->default(0)
+                    ->minValue(0),
+                TextInput::make('purchase_price')
+                    ->required()
+                    ->numeric()
+                    ->prefix('Rp')
+                    ->minValue(0),
+                TextInput::make('selling_price')
+                    ->required()
+                    ->numeric()
+                    ->prefix('Rp')
+                    ->minValue(0),
             ]);
     }
 
@@ -31,19 +55,50 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('name')
+                    ->searchable(),
+                TextColumn::make('category.name')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('stock')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('purchase_price')
+                    ->money('IDR')
+                    ->sortable()
+                    ->alignRight(),
+                TextColumn::make('selling_price')
+                    ->money('IDR')
+                    ->sortable()
+                    ->alignRight(),
+                TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->visible(fn ($action, $record) => Auth::user()?->role === 'admin'),
+                Tables\Actions\DeleteAction::make()
+                    ->visible(fn ($action, $record) => Auth::user()?->role === 'admin'),
             ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
+            ->bulkActions(
+                Auth::user()?->role === 'admin'
+                    ? [
+                        Tables\Actions\BulkActionGroup::make([
+                            Tables\Actions\DeleteBulkAction::make()
+                        ])
+                    ]
+                    : []
+            );
     }
 
     public static function getRelations(): array
@@ -60,5 +115,10 @@ class ProductResource extends Resource
             'create' => Pages\CreateProduct::route('/create'),
             'edit' => Pages\EditProduct::route('/{record}/edit'),
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return Auth::user()?->role === 'admin';
     }
 }
