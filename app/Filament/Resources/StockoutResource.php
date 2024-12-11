@@ -35,7 +35,7 @@ protected static ?string $navigationIcon = 'heroicon-o-archive-box-arrow-down';
                 TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('category.name')
+                TextColumn::make('product.category.name')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('stock')

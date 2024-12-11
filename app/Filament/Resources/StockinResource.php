@@ -34,7 +34,7 @@ class StockinResource extends Resource
                 TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('category.name')
+                TextColumn::make('product.category.name')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('stock')
@@ -49,6 +49,7 @@ class StockinResource extends Resource
             ])
             ->actions([
                 // Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 // Tables\Actions\BulkActionGroup::make([

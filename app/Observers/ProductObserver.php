@@ -17,7 +17,7 @@ class ProductObserver
             StockIn::create([
                 'name' => $product->name,
                 'stock' => $product->stock,
-                'product_id' => $product->id
+                'product_id' => $product->id,
             ]);
         }
     }
@@ -35,13 +35,13 @@ class ProductObserver
                 StockIn::create([
                     'name' => $product->name,
                     'stock' => $newStock - $oldStock,
-                    'product_id' => $product->id
+                    'product_id' => $product->id,
                 ]);
             } else {
                 StockOut::create([
                     'name' => $product->name,
                     'stock' => $oldStock - $newStock,
-                    'product_id' => $product->id
+                    'product_id' => $product->id,
                 ]);
             }
         }
@@ -56,7 +56,7 @@ class ProductObserver
             StockOut::create([
                 'name' => "Stock out due to product deletion: {$product->name}",
                 'stock' => $product->stock,
-                'product_id' => $product->id
+                'product_id' => $product->id,
             ]);
         }
     }

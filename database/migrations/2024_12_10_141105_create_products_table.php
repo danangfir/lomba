@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('stock')->default(0);
             $table->decimal('purchase_price', 10, 2);
             $table->decimal('selling_price', 10, 2);
-            $table->unsignedBigInteger('category_id'); // Tambahkan ini
+            $table->unsignedBigInteger('category_id');
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories')->cascadeOnDelete();
