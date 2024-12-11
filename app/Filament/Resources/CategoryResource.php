@@ -2,11 +2,10 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ProductResource\Pages;
-use App\Filament\Resources\ProductResource\RelationManagers;
-use App\Models\Product;
+use App\Filament\Resources\CategoryResource\Pages;
+use App\Filament\Resources\CategoryResource\RelationManagers;
+use App\Models\Category;
 use Filament\Forms;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -17,9 +16,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Auth;
 
-class ProductResource extends Resource
+class CategoryResource extends Resource
 {
-    protected static ?string $model = Product::class;
+    protected static ?string $model = Category::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -27,27 +26,11 @@ class ProductResource extends Resource
     {
         return $form
             ->schema([
-                Select::make('category_id')
-                    ->relationship('category', 'name')
-                    ->required(),
                 TextInput::make('name')
                     ->required()
+                    ->unique(ignoreRecord: true)
                     ->maxLength(100),
-                TextInput::make('stock')
-                    ->required()
-                    ->numeric()
-                    ->default(0)
-                    ->minValue(0),
-                TextInput::make('purchase_price')
-                    ->required()
-                    ->numeric()
-                    ->prefix('Rp')
-                    ->minValue(0),
-                TextInput::make('selling_price')
-                    ->required()
-                    ->numeric()
-                    ->prefix('Rp')
-                    ->minValue(0),
+
             ]);
     }
 
@@ -56,21 +39,8 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->searchable(),
-                TextColumn::make('category.name')
-                    ->sortable()
-                    ->searchable(),
-                TextColumn::make('stock')
-                    ->sortable()
-                    ->searchable(),
-                TextColumn::make('purchase_price')
-                    ->money('IDR')
-                    ->sortable()
-                    ->alignRight(),
-                TextColumn::make('selling_price')
-                    ->money('IDR')
-                    ->sortable()
-                    ->alignRight(),
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -79,7 +49,6 @@ class ProductResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                
             ])
             ->filters([
                 //
@@ -111,9 +80,9 @@ class ProductResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListProducts::route('/'),
-            'create' => Pages\CreateProduct::route('/create'),
-            'edit' => Pages\EditProduct::route('/{record}/edit'),
+            'index' => Pages\ListCategories::route('/'),
+            'create' => Pages\CreateCategory::route('/create'),
+            'edit' => Pages\EditCategory::route('/{record}/edit'),
         ];
     }
 
