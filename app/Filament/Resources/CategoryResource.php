@@ -43,12 +43,10 @@ class CategoryResource extends Resource
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->sortable(),
                 TextColumn::make('updated_at')
                     ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->sortable(),
             ])
             ->filters([
                 //
@@ -64,7 +62,7 @@ class CategoryResource extends Resource
                     ? [
                         Tables\Actions\BulkActionGroup::make([
                             Tables\Actions\DeleteBulkAction::make()
-                        ])
+                        ])->label('Manage') 
                     ]
                     : []
             );

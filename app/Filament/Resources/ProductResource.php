@@ -64,13 +64,11 @@ class ProductResource extends Resource
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('purchase_price')
-                    ->money('IDR')
-                    ->sortable()
-                    ->alignRight(),
+                    ->prefix('Rp. ')
+                    ->sortable(),
                 TextColumn::make('selling_price')
-                    ->money('IDR')
-                    ->sortable()
-                    ->alignRight(),
+                    ->prefix('Rp. ')
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -95,7 +93,7 @@ class ProductResource extends Resource
                     ? [
                         Tables\Actions\BulkActionGroup::make([
                             Tables\Actions\DeleteBulkAction::make()
-                        ])
+                        ])->label('Manage') 
                     ]
                     : []
             );
