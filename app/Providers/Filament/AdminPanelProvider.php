@@ -19,6 +19,7 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use App\Filament\Widgets\ProductChart;
+use App\Filament\Widgets\StockoutChart;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -32,6 +33,7 @@ class AdminPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Amber,
             ])
+            ->databaseNotifications()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
@@ -58,6 +60,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->widgets([
                 ProductChart::class,
+                StockoutChart::class,
             ]);
     }
 }

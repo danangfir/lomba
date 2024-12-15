@@ -17,6 +17,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Auth;
+use Filament\Tables\Actions\ExportAction;
+use App\Filament\Exports\ProductExporter;
+use Filament\Actions\Exports\Enums\ExportFormat;
 
 class ProductResource extends Resource
 {
@@ -97,7 +100,15 @@ class ProductResource extends Resource
                         ])->label('Manage') 
                     ]
                     : []
-            );
+            )
+            ->headerActions([
+                ExportAction::make()
+                ->label('Export')
+                ->exporter(ProductExporter::class)
+                ->formats([
+                    ExportFormat::Xlsx
+                ])
+            ]);
     }
 
     public static function getRelations(): array
