@@ -49,14 +49,10 @@ class StockinResource extends Resource
                 // Define filters if necessary
             ])
             ->actions([
-<<<<<<< HEAD
-                // Tables\Actions\EditAction::make(),
-=======
                 Tables\Actions\EditAction::make()
                     ->visible(fn ($action, $record) => Auth::user()?->role === 'admin'),
                 Tables\Actions\DeleteAction::make()
                     ->visible(fn ($action, $record) => Auth::user()?->role === 'admin'),
->>>>>>> develop
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
