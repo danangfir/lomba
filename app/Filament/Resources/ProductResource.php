@@ -81,7 +81,7 @@ class ProductResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                
+
             ])
             ->filters([
                 //
@@ -97,7 +97,7 @@ class ProductResource extends Resource
                     ? [
                         Tables\Actions\BulkActionGroup::make([
                             Tables\Actions\DeleteBulkAction::make()
-                        ])->label('Manage') 
+                        ])->label('Manage')
                     ]
                     : []
             )
