@@ -7,7 +7,7 @@ use Filament\Actions\Exports\Models\Export;
 use Filament\Actions\Exports\ExportColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Maatwebsite\Excel\Facades\Excel;
-use Symfony\Component\HttpFoundation\StreamedResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class StockinExporter extends Exporter
 {
@@ -36,7 +36,7 @@ class StockinExporter extends Exporter
      *
      * @return StreamedResponse
      */
-    public function export(): StreamedResponse
+    public function export(): Response
     {
         return Excel::download(
             new StockinExportFromQuery($this->getRecords()),
