@@ -86,6 +86,6 @@ class StockinResource extends Resource
 
     public static function canCreate(): bool
     {
-        return false; // Disable create action
+        return false;
     }
 }
