@@ -2,7 +2,6 @@
 
 namespace App\Providers\Filament;
 
-use App\Filament\Widgets\ProductStockPieChart;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -19,7 +18,9 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use App\Filament\Widgets\ProductChart;
+use App\Filament\Widgets\StockInChart;
 use App\Filament\Widgets\StockoutChart;
+use App\Filament\Widgets\StockinTable;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -61,6 +62,7 @@ class AdminPanelProvider extends PanelProvider
             ->widgets([
                 ProductChart::class,
                 StockoutChart::class,
+                StockInChart::class,
             ]);
     }
 }

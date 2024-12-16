@@ -5,6 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\NewPasswordController;
 
+// Rute untuk mengarahkan ke halaman login saat mengakses root
+Route::get('/', function () {
+    return redirect()->route('login'); 
+});
+
 // Rute untuk halaman login
 Route::get('/admin/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::post('/admin/login', [AuthenticatedSessionController::class, 'store']);
@@ -24,7 +29,3 @@ Route::get('/password/reset/{token}', [NewPasswordController::class, 'create'])-
 
 // Rute untuk memproses pengaturan password baru
 Route::post('/password/reset', [NewPasswordController::class, 'store'])->name('password.update');
-
-Route::get('/', function () {
-    return view('welcome');
-});
