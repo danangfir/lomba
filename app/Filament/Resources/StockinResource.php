@@ -25,7 +25,7 @@ class StockinResource extends Resource
     {
         return $form
             ->schema([
-                // Define form fields if necessary
+                //
             ]);
     }
 
@@ -46,13 +46,10 @@ class StockinResource extends Resource
                     ->sortable(),
             ])
             ->filters([
-                // Define filters if necessary
+                //
             ])
             ->actions([
-                Tables\Actions\EditAction::make()
-                    ->visible(fn ($action, $record) => Auth::user()?->role === 'admin'),
-                Tables\Actions\DeleteAction::make()
-                    ->visible(fn ($action, $record) => Auth::user()?->role === 'admin'),
+                //
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -65,7 +62,6 @@ class StockinResource extends Resource
                     ->exporter(StockinExporter::class)
                     ->formats([
                         ExportFormat::Xlsx,
-                        ExportFormat::Csv,
                     ]),
                 ]);
     }
@@ -73,7 +69,7 @@ class StockinResource extends Resource
     public static function getRelations(): array
     {
         return [
-            // Define relations if necessary
+            // 
         ];
     }
 

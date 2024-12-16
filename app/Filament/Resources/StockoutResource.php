@@ -49,12 +49,10 @@ class StockoutResource extends Resource
                 //
             ])
             ->actions([
-                // Tables\Actions\EditAction::make(),
+                //
             ])
             ->bulkActions([
-                // Tables\Actions\BulkActionGroup::make([
-                //     Tables\Actions\DeleteBulkAction::make(),
-                // ]),
+                //
             ]);
     }
 
@@ -69,8 +67,6 @@ class StockoutResource extends Resource
     {
         return [
             'index' => Pages\ListStockouts::route('/'),
-            // 'create' => Pages\CreateStockout::route('/create'),
-            // 'edit' => Pages\EditStockout::route('/{record}/edit'),
         ];
     }
 
