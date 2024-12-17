@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class StockoutChart extends ChartWidget
 {
-    protected static ?string $heading = 'Stockout Trend';
+    protected static ?string $heading = 'Stock Out Trend';
     protected static ?int $sort = 2;
     protected static ?string $maxHeight = '350px';
 
@@ -26,7 +26,7 @@ class StockoutChart extends ChartWidget
             'labels' => $stockouts->pluck('date')->toArray(),
             'datasets' => [
                 [
-                    'label' => 'Daily Stockouts',
+                    'label' => 'Daily Stock out',
                     'data' => $stockouts->pluck('total_stock')->toArray(),
                     'fill' => false,
                     'borderColor' => 'rgb(75, 192, 192)',

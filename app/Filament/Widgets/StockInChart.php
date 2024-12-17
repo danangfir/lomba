@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class StockInChart extends ChartWidget
 {
-    protected static ?string $heading = 'StockIn Trend';
+    protected static ?string $heading = 'Stock In Trend';
     protected static ?int $sort = 2;
     protected static ?string $maxHeight = '350px';
 
@@ -26,7 +26,7 @@ class StockInChart extends ChartWidget
             'labels' => $stockins->pluck('date')->toArray(),
             'datasets' => [
                 [
-                    'label' => 'Daily Stockin',
+                    'label' => 'Daily Stock in',
                     'data' => $stockins->pluck('total_stock')->toArray(),
                     'fill' => false,
                     'borderColor' => 'rgb(75, 192, 192)',
