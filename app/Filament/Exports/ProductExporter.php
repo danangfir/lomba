@@ -15,21 +15,21 @@ class ProductExporter extends Exporter
     {
         return [
             ExportColumn::make('name')
-                ->label('Nama Produk'),
+                ->label('Product Name'),
             ExportColumn::make('category.name')
-                ->label('Kategori'),
+                ->label('Category Name'),
             ExportColumn::make('stock')
-                ->label('Stok'),
+                ->label('Stock'),
             ExportColumn::make('purchase_price')
-                ->label('Harga Beli')
+                ->label('Purchase Price')
                 ->formatStateUsing(fn ($state) => 'Rp ' . number_format($state, 0, ',', '.')),
             ExportColumn::make('selling_price')
-                ->label('Harga Jual')
+                ->label('Selling Price')
                 ->formatStateUsing(fn ($state) => 'Rp ' . number_format($state, 0, ',', '.')),
             ExportColumn::make('created_at')
-                ->label('Tanggal Dibuat'),
+                ->label('Created At'),
             ExportColumn::make('updated_at')
-                ->label('Tanggal Diupdate'),
+                ->label('Updated At'),
         ];
     }
 

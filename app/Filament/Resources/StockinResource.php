@@ -20,6 +20,8 @@ class StockinResource extends Resource
     protected static ?string $model = Stockin::class;
     protected static ?string $navigationGroup = 'Stock Movements';
     protected static ?string $navigationIcon = 'heroicon-o-archive-box';
+    protected static ?string $navigationLabel = 'Stock In';
+    protected static ?string $pluralModelLabel = 'Stock In';
 
     public static function form(Form $form): Form
     {
