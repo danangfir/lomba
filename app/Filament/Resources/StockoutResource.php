@@ -2,23 +2,25 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\StockoutResource\Pages;
-use App\Filament\Resources\StockoutResource\RelationManagers;
-use App\Models\Stockout;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\TextColumn;
+use App\Models\Stockin;
+use App\Models\StockOut;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Resources\Resource;
+use Illuminate\Support\Facades\Auth;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Actions\ExportAction;
+use App\Filament\Exports\StockoutExporter;
+use Filament\Actions\Exports\Enums\ExportFormat;
+use App\Filament\Resources\StockoutResource\Pages;
 
 class StockoutResource extends Resource
 {
-    protected static ?string $model = Stockout::class;
+    protected static ?string $model = StockOut::class;
     protected static ?string $navigationGroup = 'Stock Movements';
-    protected static ?string $navigationIcon = 'heroicon-o-archive-box-arrow-down';
+    protected static ?string $navigationIcon = 'heroicon-o-archive-box';
 
     public static function form(Form $form): Form
     {
@@ -33,18 +35,17 @@ class StockoutResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->searchable()
-                    ->sortable(),
+                    ->searchable(),
                 TextColumn::make('product.category.name')
-                    ->searchable()
-                    ->sortable(),
+                    ->label('Category Name')
+                    ->searchable(),
                 TextColumn::make('stock')
                     ->sortable(),
                 TextColumn::make('created_at')
+                    ->label('Created At')
                     ->dateTime()
                     ->sortable(),
             ])
-            ->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])
@@ -52,14 +53,24 @@ class StockoutResource extends Resource
                 //
             ])
             ->bulkActions([
-                //
-            ]);
+                Tables\Actions\BulkActionGroup::make([
+                    Tables\Actions\DeleteBulkAction::make()
+                ])->label('Manage'),
+            ])
+            ->headerActions([
+                ExportAction::make()
+                    ->label('Export')
+                    ->exporter(StockoutExporter::class)
+                    ->formats([
+                        ExportFormat::Xlsx,
+                    ]),
+                ]);
     }
 
     public static function getRelations(): array
     {
         return [
-            //
+            // 
         ];
     }
 
