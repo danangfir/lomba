@@ -1,7 +1,6 @@
 <?php
 namespace Database\Seeders;
 
-use App\Models\Product;
 use App\Models\Stockin;
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
@@ -49,12 +48,7 @@ class StockinSeeder extends Seeder
         ];
 
         foreach ($stockins as $stockin) {
-            $product = Product::find($stockin['product_id']);
-            if ($product) {
-                $stockin['unit_price'] = $product->purchase_price;
-                $stockin['total_price'] = $product->purchase_price * $stockin['stock'];
-                Stockin::create($stockin);
-            }
+            Stockin::create($stockin);
         }
     }
 }

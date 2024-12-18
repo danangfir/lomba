@@ -1,7 +1,7 @@
 <?php
+
 namespace Database\Seeders;
 
-use App\Models\Product;
 use App\Models\Stockout;
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
@@ -49,12 +49,7 @@ class StockoutSeeder extends Seeder
         ];
 
         foreach ($stockouts as $stockout) {
-            $product = Product::find($stockout['product_id']);
-            if ($product) {
-                $stockout['unit_price'] = $product->selling_price;
-                $stockout['total_price'] = $product->selling_price * $stockout['stock'];
-                Stockout::create($stockout);
-            }
+            Stockout::create($stockout);
         }
     }
 }
