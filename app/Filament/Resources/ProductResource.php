@@ -40,14 +40,15 @@ class ProductResource extends Resource
                 TextInput::make('stock')
                     ->required()
                     ->numeric()
-                    ->default(0)
                     ->minValue(0),
                 TextInput::make('purchase_price')
+                    ->label('Purchase Price per Unit')
                     ->required()
                     ->numeric()
                     ->prefix('Rp')
                     ->minValue(0),
                 TextInput::make('selling_price')
+                    ->label('Selling Price per Unit')
                     ->required()
                     ->numeric()
                     ->prefix('Rp')
