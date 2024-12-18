@@ -35,44 +35,48 @@ Berikut adalah langkah-langkah untuk menyiapkan proyek Laravel menggunakan **Fil
    git clone <repository-url>
    ```
 
-2. Install Dependencies dengan Composer Install dependensi PHP menggunakan Composer:
+2. Pindah ke direktori proyek yang telah di-clone:
+    ```bash
+    cd <nama_proyek>
+
+3. Install Dependencies dengan Composer Install dependensi PHP menggunakan Composer:
     ```
     composer install
     ```
 
-3. Install Dependencies dengan Yarn Install dependensi frontend menggunakan Yarn:
+4. Install Dependencies dengan Yarn Install dependensi frontend menggunakan Yarn:
     ```
     yarn add vite --dev
     yarn build
     ```
 
-4. Konfigurasi .env Salin file konfigurasi .env.example ke .env:
+5. Konfigurasi .env Salin file konfigurasi .env.example ke .env:
     ```
     cp .env.example .env
     ```
 
-5. Generate Key Aplikasi Laravel Jalankan perintah berikut untuk menghasilkan aplikasi key yang unik:
+6. Generate Key Aplikasi Laravel Jalankan perintah berikut untuk menghasilkan aplikasi key yang unik:
     ```
     php artisan key:generate
     ```
 
-6. Buat Link untuk Storage Jalankan perintah untuk membuat symbolic link ke direktori storage:
+7. Buat Link untuk Storage Jalankan perintah untuk membuat symbolic link ke direktori storage:
     ```
     php artisan storage:link
     ```
 
-7. Migrasi Database Jalankan migrasi untuk membuat struktur tabel di database:
+8. Migrasi Database Jalankan migrasi untuk membuat struktur tabel di database:
     ```
     php artisan migrate
     ```
 
-8. Seed Database (Opsional) Jika Anda ingin menambahkan data dummy untuk pengembangan, jalankan perintah seed:
+9. Seed Database (Opsional) Jika Anda ingin menambahkan data dummy untuk pengembangan, jalankan perintah seed:
     ```
     php artisan migrate --seed
 
     ```
 
-9. Jalankan Server Jalankan server lokal Laravel:
+10. Jalankan Server Jalankan server lokal Laravel:
     ```
     php artisan serve
     ```
