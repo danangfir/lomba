@@ -36,7 +36,7 @@ class NetProfitChart extends ChartWidget
         $netProfitData = $dates->map(function ($date) use ($stockins, $stockouts) {
             $stockinValue = $stockins->where('date', $date)->sum('total_stockin_value');
             $stockoutValue = $stockouts->where('date', $date)->sum('total_stockout_value');
-            return $stockinValue - $stockoutValue;
+            return $stockoutValue - $stockinValue;
         });
 
         return [
