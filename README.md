@@ -36,7 +36,7 @@ Berikut adalah langkah-langkah untuk menyiapkan proyek Laravel menggunakan **Fil
    ```
 
 2. Pindah ke direktori proyek yang telah di-clone:
-    ```bash
+    ```
     cd <nama_proyek>
     ```
 
