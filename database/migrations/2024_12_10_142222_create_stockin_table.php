@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('stockin', function (Blueprint $table) {
             $table->id();
-            $table->string('name',100);
+            $table->string('name', 100);
             $table->unsignedBigInteger('stock')->default(0);
+            $table->decimal('unit_price', 15, 2);
+            $table->decimal('total_price', 15, 2);
             $table->unsignedBigInteger('product_id');
             $table->timestamps();
 
