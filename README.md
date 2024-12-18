@@ -38,6 +38,7 @@ Berikut adalah langkah-langkah untuk menyiapkan proyek Laravel menggunakan **Fil
 2. Pindah ke direktori proyek yang telah di-clone:
     ```bash
     cd <nama_proyek>
+    ```
 
 3. Install Dependencies dengan Composer Install dependensi PHP menggunakan Composer:
     ```
