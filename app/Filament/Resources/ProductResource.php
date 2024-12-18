@@ -68,10 +68,14 @@ class ProductResource extends Resource
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('purchase_price')
+                    ->label('Purchase Price per Unit')
                     ->prefix('Rp. ')
+                    ->formatStateUsing(fn (string $state): string => number_format($state, 0, ',', '.'))
                     ->sortable(),
                 TextColumn::make('selling_price')
+                    ->label('Selling Price per Unit')
                     ->prefix('Rp. ')
+                    ->formatStateUsing(fn (string $state): string => number_format($state, 0, ',', '.'))
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()

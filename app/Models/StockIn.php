@@ -13,6 +13,8 @@ class StockIn extends Model
         'name',
         'stock',
         'product_id',
+        'unit_price',
+        'total_price',
     ];
 
     public function product(): BelongsTo

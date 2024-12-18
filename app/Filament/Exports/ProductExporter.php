@@ -21,10 +21,10 @@ class ProductExporter extends Exporter
             ExportColumn::make('stock')
                 ->label('Stock'),
             ExportColumn::make('purchase_price')
-                ->label('Purchase Price')
+                ->label('Purchase Price per Unit')
                 ->formatStateUsing(fn ($state) => 'Rp ' . number_format($state, 0, ',', '.')),
             ExportColumn::make('selling_price')
-                ->label('Selling Price')
+                ->label('Selling Price per Unit')
                 ->formatStateUsing(fn ($state) => 'Rp ' . number_format($state, 0, ',', '.')),
             ExportColumn::make('created_at')
                 ->label('Created At'),

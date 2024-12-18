@@ -44,6 +44,8 @@ class StockinExportFromQuery implements FromQuery, WithHeadings, WithMapping, Sh
             'Name',
             'Category Name',
             'Stock',
+            'Unit Price',
+            'Total Price',
             'Created At',
         ];
     }

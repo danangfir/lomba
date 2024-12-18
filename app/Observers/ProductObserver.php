@@ -18,6 +18,8 @@ class ProductObserver
                 'name' => $product->name,
                 'stock' => $product->stock,
                 'product_id' => $product->id,
+                'unit_price' => $product->purchase_price,
+                'total_price' => $product->purchase_price * $product->stock,
             ]);
         }
     }
@@ -32,16 +34,22 @@ class ProductObserver
         
         if ($oldStock !== $newStock) {
             if ($newStock > $oldStock) {
+                $stockChange = $newStock - $oldStock;
                 StockIn::create([
                     'name' => $product->name,
-                    'stock' => $newStock - $oldStock,
+                    'stock' => $stockChange,
                     'product_id' => $product->id,
+                    'unit_price' => $product->purchase_price,
+                    'total_price' => $product->purchase_price * $stockChange,
                 ]);
             } else {
+                $stockChange = $oldStock - $newStock;
                 StockOut::create([
                     'name' => $product->name,
-                    'stock' => $oldStock - $newStock,
+                    'stock' => $stockChange,
                     'product_id' => $product->id,
+                    'unit_price' => $product->selling_price,
+                    'total_price' => $product->selling_price * $stockChange,
                 ]);
             }
         }
@@ -57,6 +65,8 @@ class ProductObserver
                 'name' => "Stock out due to product deletion: {$product->name}",
                 'stock' => $product->stock,
                 'product_id' => $product->id,
+                'unit_price' => $product->selling_price,
+                'total_price' => $product->selling_price * $product->stock,
             ]);
         }
     }

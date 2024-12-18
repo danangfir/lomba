@@ -43,6 +43,16 @@ class StockoutResource extends Resource
                     ->searchable(),
                 TextColumn::make('stock')
                     ->sortable(),
+                TextColumn::make('unit_price')
+                    ->prefix('Rp ')
+                    ->formatStateUsing(fn (string $state): string => number_format($state, 0, ',', '.'))
+                    ->label('Unit Price')
+                    ->sortable(),
+                TextColumn::make('total_price')
+                    ->prefix('Rp ')
+                    ->formatStateUsing(fn (string $state): string => number_format($state, 0, ',', '.'))
+                    ->label('Total Price')
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->label('Created At')
                     ->dateTime()

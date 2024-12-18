@@ -56,6 +56,8 @@ class StockinExporter extends Exporter
             ExportColumn::make('name')->label('Name'),
             ExportColumn::make('product.category.name')->label('Category Name'),
             ExportColumn::make('stock')->label('Stock'),
+            ExportColumn::make('unit_price')->label('Unit Price')->formatStateUsing(fn ($state) => 'Rp ' . number_format($state, 0, ',', '.')),
+            ExportColumn::make('total_price')->label('Total Price')->formatStateUsing(fn ($state) => 'Rp ' . number_format($state, 0, ',', '.')),
             ExportColumn::make('created_at')->label('Created At'),
         ];
     }

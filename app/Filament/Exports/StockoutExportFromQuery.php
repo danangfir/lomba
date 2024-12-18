@@ -44,6 +44,8 @@ class StockoutExportFromQuery implements FromQuery, WithHeadings, WithMapping, S
             'Name',
             'Category Name',
             'Stock',
+            'Unit Price',
+            'Total Price',
             'Created At',
         ];
     }
