@@ -1,6 +1,7 @@
 <?php
 namespace Database\Seeders;
 
+use App\Models\Product;
 use App\Models\Stockin;
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
@@ -11,44 +12,49 @@ class StockinSeeder extends Seeder
     {
         $stockins = [
             [
-                'name' => 'Initial Stock Smartphone',
+                'name' => 'Samsung',
                 'stock' => 50,
                 'product_id' => 1,
-                'created_at' => '2024-01-20 09:00:00',
-                'updated_at' => '2024-01-20 09:00:00'
+                'created_at' => '2024-12-02 13:00:00',
+                'updated_at' => '2024-12-02 13:00:00'
             ],
             [
-                'name' => 'Initial Stock T-Shirt',
+                'name' => 'T-Shirt Premium',
                 'stock' => 100,
                 'product_id' => 2,
-                'created_at' => '2024-01-21 10:30:00',
-                'updated_at' => '2024-01-21 10:30:00'
+                'created_at' => '2024-12-03 14:15:00',
+                'updated_at' => '2024-12-03 14:15:00'
             ],
             [
-                'name' => 'Initial Stock Noodles',
+                'name' => 'Instant Noodles',
                 'stock' => 200,
                 'product_id' => 3,
-                'created_at' => '2024-01-22 13:15:00',
-                'updated_at' => '2024-01-22 13:15:00'
+                'created_at' => '2024-12-04 10:30:00',
+                'updated_at' => '2024-12-04 10:30:00'
             ],
             [
-                'name' => 'Initial Stock Face Cream',
+                'name' => 'Face Cream',
                 'stock' => 30,
                 'product_id' => 4,
-                'created_at' => '2024-01-23 14:45:00',
-                'updated_at' => '2024-01-23 14:45:00'
+                'created_at' => '2024-12-05 09:45:00',
+                'updated_at' => '2024-12-05 09:45:00'
             ],
             [
-                'name' => 'Initial Stock Bedsheet',
+                'name' => 'Bedsheet set',
                 'stock' => 25,
                 'product_id' => 5,
-                'created_at' => '2024-01-24 15:20:00',
-                'updated_at' => '2024-01-24 15:20:00'
+                'created_at' => '2024-12-06 11:20:00',
+                'updated_at' => '2024-12-06 11:20:00'
             ],
         ];
 
         foreach ($stockins as $stockin) {
-            Stockin::create($stockin);
+            $product = Product::find($stockin['product_id']);
+            if ($product) {
+                $stockin['unit_price'] = $product->purchase_price;
+                $stockin['total_price'] = $product->purchase_price * $stockin['stock'];
+                Stockin::create($stockin);
+            }
         }
     }
 }
