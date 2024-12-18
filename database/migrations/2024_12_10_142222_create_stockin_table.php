@@ -18,9 +18,10 @@ return new class extends Migration
             $table->decimal('unit_price', 15, 2);
             $table->decimal('total_price', 15, 2);
             $table->unsignedBigInteger('product_id');
-            $table->timestamps();
+            $table->timestamps();            
 
-            $table->foreign('product_id')->references('id')->on('products');
+
+            $table->foreign('product_id')->references('id')->on('products')->cascadeOnDelete();
         });
     }
 

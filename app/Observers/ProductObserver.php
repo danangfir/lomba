@@ -5,6 +5,7 @@ namespace App\Observers;
 use App\Models\Product;
 use App\Models\StockIn;
 use App\Models\StockOut;
+use Illuminate\Support\Facades\Log;
 
 class ProductObserver
 {
@@ -60,14 +61,20 @@ class ProductObserver
      */
     public function deleted(Product $product): void
     {
-        if ($product->stock > 0) {
-            StockOut::create([
-                'name' => "Stock out due to product deletion: {$product->name}",
-                'stock' => $product->stock,
-                'product_id' => $product->id,
-                'unit_price' => $product->selling_price,
-                'total_price' => $product->selling_price * $product->stock,
-            ]);
+        try {
+            Log::info("Product deleted: {$product->name}, ID: {$product->id}");
+
+            if ($product->stock > 0) {
+                StockOut::create([
+                    'name' => "Stock out due to product deletion: {$product->name}",
+                    'stock' => $product->stock,
+                    'product_id' => $product->id,
+                    'unit_price' => $product->selling_price,
+                    'total_price' => $product->selling_price * $product->stock,
+                ]);
+            }
+        } catch (\Exception $e) {
+            Log::error("Error deleting product {$product->name}: " . $e->getMessage());
         }
     }
 }

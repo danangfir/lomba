@@ -19,6 +19,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Facades\Auth;
 use Filament\Tables\Actions\ExportAction;
 use App\Filament\Exports\ProductExporter;
+use App\Models\StockIn;
+use App\Models\StockOut;
 use Filament\Actions\Exports\Enums\ExportFormat;
 
 class ProductResource extends Resource
@@ -95,7 +97,9 @@ class ProductResource extends Resource
                 Tables\Actions\EditAction::make()
                     ->visible(fn ($action, $record) => Auth::user()?->role === 'admin'),
                 Tables\Actions\DeleteAction::make()
-                    ->visible(fn ($action, $record) => Auth::user()?->role === 'admin'),
+                    ->visible(fn ($action, $record) => Auth::user()?->role === 'admin')
+                    ->before(function ($record) {
+                    }),
             ])
             ->bulkActions(
                 Auth::user()?->role === 'admin'
