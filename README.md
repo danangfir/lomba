@@ -21,7 +21,8 @@ Sistem ini memungkinkan admin untuk mencatat barang masuk dan keluar, mengelola 
 
 Dibangun menggunakan **FilamentPHP** untuk menyediakan antarmuka admin yang user-friendly, aplikasi ini menawarkan kemudahan dalam pengelolaan inventaris, memudahkan admin dalam mengambil keputusan yang cepat dan akurat mengenai persediaan barang, serta menjaga kelancaran operasional bisnis
 
-## <font color="red"> ! Before launching your project, follow these essential setup steps:</font>
+> [!TIP]
+> Before launching your project, follow these essential setup steps:
 
 ## Setup Proyek Laravel dengan FilamentPHP dan Blade
 
