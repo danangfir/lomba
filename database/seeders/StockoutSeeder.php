@@ -1,5 +1,4 @@
 <?php
-
 namespace Database\Seeders;
 
 use App\Models\Product;
@@ -13,39 +12,39 @@ class StockoutSeeder extends Seeder
     {
         $stockouts = [
             [
-                'name' => 'Samsung',
+                'name' => 'Sales Smartphone',
                 'stock' => 5,
                 'product_id' => 1,
-                'created_at' => '2024-12-03 13:20:00',
-                'updated_at' => '2024-12-03 13:20:00'
+                'created_at' => '2024-01-20 13:20:00',
+                'updated_at' => '2024-01-20 13:20:00'
             ],
             [
-                'name' => 'T-Shirt',
+                'name' => 'Sales T-Shirt',
                 'stock' => 10,
                 'product_id' => 2,
-                'created_at' => '2024-12-04 14:30:00',
-                'updated_at' => '2024-12-04 14:30:00'
+                'created_at' => '2024-01-21 14:30:00',
+                'updated_at' => '2024-01-21 14:30:00'
             ],
             [
-                'name' => 'Instant Noodles',
+                'name' => 'Sales Noodles',
                 'stock' => 50,
                 'product_id' => 3,
-                'created_at' => '2024-12-05 09:15:00',
-                'updated_at' => '2024-12-05 09:15:00'
+                'created_at' => '2024-01-22 09:15:00',
+                'updated_at' => '2024-01-22 09:15:00'
             ],
             [
-                'name' => 'Face Cream',
+                'name' => 'Sales Face Cream',
                 'stock' => 5,
                 'product_id' => 4,
-                'created_at' => '2024-12-06 11:45:00',
-                'updated_at' => '2024-12-06 11:45:00'
+                'created_at' => '2024-01-23 11:45:00',
+                'updated_at' => '2024-01-23 11:45:00'
             ],
             [
-                'name' => 'Bedsheet Set',
+                'name' => 'Sales Bedsheet',
                 'stock' => 3,
                 'product_id' => 5,
-                'created_at' => '2024-12-07 16:00:00',
-                'updated_at' => '2024-12-07 16:00:00'
+                'created_at' => '2024-01-24 16:00:00',
+                'updated_at' => '2024-01-24 16:00:00'
             ],
         ];
 
